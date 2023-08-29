@@ -1,5 +1,8 @@
 # logger
 
+#### функция тестирования логгера
+![image](https://github.com/D1roX/logger/assets/86681516/4372ac15-fce6-49c6-80a2-92f2f5765cfd)
+
 #### записи в файле _log.txt
 ![image](https://github.com/D1roX/logger/assets/86681516/7b20a554-7fa1-40dd-95d5-1270187a5a09)
 
