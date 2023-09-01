@@ -19,8 +19,8 @@ LOGGING_LEVELS = {
 HANDLER_LEVELS = {
     'CONSOLE_LEVEL': 10,
     'FILE_LEVEL': 60,
-    'CUSTOM_CONSOLE_LEVELS': [10, 20, 30, 40, 50, 60, 70, 80],
-    'CUSTOM_FILE_LEVELS': [20, 60, 70, 80],
+    'CUSTOM_CONSOLE_LEVELS': [10, 20, 30, 40, 50, 60, 70, 80],  # уровни логирования, которые будут записаны в консоль
+    'CUSTOM_FILE_LEVELS': [20, 60, 70, 80],  # уровни логирования, которые будут записаны в файл
 }
 
 # формат сообщения
