@@ -1,0 +1,17 @@
+2023-09-02 00:20:12,600 | logger               |         [SYSTEM]   | test system log
+2023-09-02 00:20:12,601 | logger               |         [INIT]     | test init log
+2023-09-02 00:20:12,601 | logger               |         [DIAGNOST] | test diagnost log
+2023-09-02 00:20:12,601 | logger               |         [INFO]     | test info log
+2023-09-02 00:20:12,602 | logger               |         [SYSTEM]   | test system log
+2023-09-02 00:20:12,602 | logger               |         [INIT]     | test init log
+2023-09-02 00:20:12,602 | logger               |         [DIAGNOST] | test diagnost log
+2023-09-02 00:20:12,602 | logger               |         [INFO]     | test info log
+2023-09-02 00:20:12,603 | logger               | [ERROR] [SYSTEM]   | test error system log
+2023-09-02 00:20:12,604 | logger               | [ERROR] [INIT]     | test error init log
+2023-09-02 00:20:12,604 | logger               | [ERROR] [DIAGNOST] | test error diagnost log
+2023-09-02 00:20:12,604 | logger               | [ERROR] [INFO]     | test error info log
+2023-09-02 00:20:12,605 | logger               | [ERROR] [SYSTEM]   | test error system log
+2023-09-02 00:20:12,605 | logger               | [ERROR] [INIT]     | test error init log
+2023-09-02 00:20:12,605 | logger               | [ERROR] [DIAGNOST] | test error diagnost log
+2023-09-02 00:20:12,607 | logger_name_test     |         [INFO]     | test loger name
+2023-09-02 00:20:12,606 | logger               | [ERROR] [INFO]     | test error info log
