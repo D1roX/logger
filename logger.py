@@ -186,7 +186,7 @@ class Logger(logging.getLoggerClass()):
         msg = make_msg(msg, is_error, level_index, level_name)
         self._logger.log(level_index, msg, *args)
 
-    def loger(self, level_index=0, msg='', is_error=False):
+    def logger(self, level_index=0, msg='', is_error=False):
         """
         Вызов функции для записи сообщения с указанием уровня логирования и информацией о наличии ошибки в отдельном
         потоке.
