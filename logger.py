@@ -59,16 +59,24 @@ def isEnabledFor(level_index):
 
 def set_level_filter(levels=None):
     """
-    Функция создания кастомного фильтра.
+    Функция создания кастомного фильтра уровней логирования.
     :param levels: допустимые уровни логирования
     :return: фильтр
     """
     if levels is None:
         levels = HANDLER_LEVELS['CUSTOM_CONSOLE_LEVELS']
-    return Filter(levels)
+    return LevelFilter(levels)
 
 
-class Filter(logging.Filter):
+def set_error_filter():
+    """
+    Функция создания кастомного фильтра наличия ошибки.
+    :return: фильтр
+    """
+    return ErrorFilter()
+
+
+class LevelFilter(logging.Filter):
     """
     Класс кастомного фильтра для регистрации указанных уровней логирования и отсвеивания остальных.
     """
@@ -92,12 +100,29 @@ class Filter(logging.Filter):
         return False
 
 
+class ErrorFilter(logging.Filter):
+    """
+    Класс кастомного фильтра для регистрации указанных уровней логирования и отсвеивания остальных.
+    """
+    def filter(self, log_record):
+        """
+        Функция, проверяющая наличие ошибки в log_record.
+        :param log_record: запись лога
+        :return:
+        True, если ошибка есть;
+        False, если отсутствует.
+        """
+        if '[ERROR]' in log_record.msg:
+            return True
+        return False
+
+
 class Logger(logging.getLoggerClass()):
     """
     Класс логирования.
     """
 
-    def __init__(self, name='logger', console_level=None, file_level=None):
+    def __init__(self, name='logger', console_level=None, file_level=None, only_error=False):
         """
         Инициализация логгера.
         :param name: имя логгера
@@ -126,6 +151,9 @@ class Logger(logging.getLoggerClass()):
             file_handler.addFilter(file_filter)
         else:
             file_handler.setLevel(file_level)
+
+        if only_error:
+            file_handler.addFilter(set_error_filter())
 
         formatter = logging.Formatter(MESSAGE_FORMAT)
         file_handler.setFormatter(formatter)

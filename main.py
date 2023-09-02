@@ -6,7 +6,7 @@ from logger import Logger
 
 
 def logger_test():
-    log = Logger()
+    log = Logger(only_error=True)
     log.loger(60, 'test system log')
     log.loger(70, 'test init log')
     log.loger(80, 'test diagnost log')
