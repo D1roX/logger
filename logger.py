@@ -27,6 +27,11 @@ HANDLER_LEVELS = {
 MESSAGE_FORMAT = '%(asctime)s | %(name)-20s | %(message)s'
 
 
+def set_custom_handler_levels(console_levels, file_levels):
+    HANDLER_LEVELS['CUSTOM_CONSOLE_LEVELS'] = console_levels
+    HANDLER_LEVELS['CUSTOM_FILE_LEVELS'] = file_levels
+
+
 def make_msg(msg, is_error, level_index=10, level_name=None):
     """
     Функция добавления информации об уровне логирования и наличию ошибки к сообщению.
@@ -78,7 +83,7 @@ def set_error_filter():
 
 class LevelFilter(logging.Filter):
     """
-    Класс кастомного фильтра для регистрации указанных уровней логирования и отсвеивания остальных.
+    Класс кастомного фильтра для регистрации указанных уровней логирования и отсеивания остальных.
     """
     def __init__(self, levels):
         """
@@ -102,7 +107,7 @@ class LevelFilter(logging.Filter):
 
 class ErrorFilter(logging.Filter):
     """
-    Класс кастомного фильтра для регистрации указанных уровней логирования и отсвеивания остальных.
+    Класс кастомного фильтра для регистрации сообщений логера с наличием ошибки и отсеивания остальных.
     """
     def filter(self, log_record):
         """
@@ -124,9 +129,13 @@ class Logger(logging.getLoggerClass()):
 
     def __init__(self, name='logger', console_level=None, file_level=None, only_error=False):
         """
-        Инициализация логгера.
-        :param name: имя логгера
+        Инициализация логера.
+        :param name: имя логера
+        :param console_level: минимальный уровень логирования для вывода в консоль
+        :param file_level: минимальный уровень логирования для записи в файл
+        :param only_error: флаг, позволяющий записывать в файл только ошибки, если True
         """
+        do_rollover = True if len(logging.root.manager.loggerDict) == 0 else False
         super().__init__(name)
 
         logging.addLevelName(60, 'SYSTEM')
@@ -157,7 +166,7 @@ class Logger(logging.getLoggerClass()):
 
         formatter = logging.Formatter(MESSAGE_FORMAT)
         file_handler.setFormatter(formatter)
-        if len(logging.root.manager.loggerDict) == 1:
+        if do_rollover:
             file_handler.doRollover()
 
         self._logger.addHandler(file_handler)
